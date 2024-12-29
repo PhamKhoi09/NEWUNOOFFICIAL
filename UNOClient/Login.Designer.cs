@@ -41,6 +41,7 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tbPort = new System.Windows.Forms.TextBox();
+            this.lbRemind = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -118,6 +119,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
@@ -129,16 +131,16 @@
             // 
             // tbServerDomain
             // 
-            this.tbServerDomain.Location = new System.Drawing.Point(171, 36);
+            this.tbServerDomain.Location = new System.Drawing.Point(171, 61);
             this.tbServerDomain.Name = "tbServerDomain";
             this.tbServerDomain.Size = new System.Drawing.Size(264, 22);
             this.tbServerDomain.TabIndex = 21;
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(563, 36);
+            this.btnConnect.Location = new System.Drawing.Point(546, 61);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(75, 23);
+            this.btnConnect.Size = new System.Drawing.Size(84, 23);
             this.btnConnect.TabIndex = 22;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -153,16 +155,29 @@
             // 
             // tbPort
             // 
-            this.tbPort.Location = new System.Drawing.Point(467, 37);
+            this.tbPort.Location = new System.Drawing.Point(455, 61);
             this.tbPort.Name = "tbPort";
             this.tbPort.Size = new System.Drawing.Size(72, 22);
             this.tbPort.TabIndex = 24;
+            // 
+            // lbRemind
+            // 
+            this.lbRemind.AutoSize = true;
+            this.lbRemind.BackColor = System.Drawing.Color.Black;
+            this.lbRemind.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRemind.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.lbRemind.Location = new System.Drawing.Point(182, 40);
+            this.lbRemind.Name = "lbRemind";
+            this.lbRemind.Size = new System.Drawing.Size(397, 18);
+            this.lbRemind.TabIndex = 25;
+            this.lbRemind.Text = "Vui lòng nhập tên miền/IP và số port server trước khi kết nối";
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbRemind);
             this.Controls.Add(this.tbPort);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnConnect);
@@ -199,5 +214,6 @@
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox tbPort;
+        private System.Windows.Forms.Label lbRemind;
     }
 }

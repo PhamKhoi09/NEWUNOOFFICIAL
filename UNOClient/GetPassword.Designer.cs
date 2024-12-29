@@ -62,7 +62,7 @@
             // 
             // usernameTextBox
             // 
-            this.usernameTextBox.Location = new System.Drawing.Point(264, 132);
+            this.usernameTextBox.Location = new System.Drawing.Point(254, 132);
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(383, 22);
             this.usernameTextBox.TabIndex = 16;
@@ -79,7 +79,7 @@
             // 
             // emailTextBox
             // 
-            this.emailTextBox.Location = new System.Drawing.Point(264, 180);
+            this.emailTextBox.Location = new System.Drawing.Point(254, 176);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(383, 22);
             this.emailTextBox.TabIndex = 18;
@@ -87,7 +87,7 @@
             // retrievePasswordButton
             // 
             this.retrievePasswordButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.retrievePasswordButton.Location = new System.Drawing.Point(241, 226);
+            this.retrievePasswordButton.Location = new System.Drawing.Point(254, 218);
             this.retrievePasswordButton.Name = "retrievePasswordButton";
             this.retrievePasswordButton.Size = new System.Drawing.Size(262, 52);
             this.retrievePasswordButton.TabIndex = 19;
