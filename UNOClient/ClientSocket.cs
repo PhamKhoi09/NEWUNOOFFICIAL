@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -97,10 +98,12 @@ namespace UnoOnline
                     case MessageType.LoginSuccessful:
                         OnMessageReceived.Invoke("Processing LoginSuccessful message");
                         Login.HandleLoginSuccessful(message.Data[0]);
+                        LogLoginStatus("Login Successful for user: " + message.Data[0]); // Log login success
                         break;
                     case MessageType.LoginFail:
                         OnMessageReceived.Invoke("Processing LoginFail message");
                         MessageBox.Show(message.Data[0], "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        LogLoginStatus("Login Failed: " + message.Data[0]); // Log login failure
                         break;
                     case MessageType.RegisterSuccessful:
                         OnMessageReceived.Invoke("Processing RegisterSuccessful message");
@@ -330,6 +333,22 @@ namespace UnoOnline
             catch
             {
                 return false; // Nếu có lỗi, chuỗi không phải Base64
+            }
+        }
+
+        public static void LogLoginStatus(string status)
+        {
+            string logFilePath = "login_status.txt";
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(logFilePath, true))
+                {
+                    writer.WriteLine($"{DateTime.Now}: {status}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error writing to log file: " + ex.Message);
             }
         }
     }

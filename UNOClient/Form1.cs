@@ -14,7 +14,6 @@ namespace UnoOnline
     public partial class Form1 : Form
     {
         //private Label currentPlayerLabel;
-        //private ProgressBar turnTimer;
         //private Label currentCardLabel;
         //private Panel PlayerHandPanel;
         //private Button skipTurnButton;
@@ -38,11 +37,6 @@ namespace UnoOnline
         // Update the image displayed in the PictureBox
         public void UpdateCurrentCardDisplay(Card currentCard)
         {
-            if (currentCard == null)
-            {
-                MessageBox.Show("CurrentCard is null in UpdateCurrentCardDisplay.");
-                return;
-            }
             string cardImagePath = "";
             if (currentCard.CardName.Contains("Wild"))
             {
@@ -63,55 +57,6 @@ namespace UnoOnline
                 currentCardPictureBox.Image = Image.FromFile(cardImagePath);
             }
         }
-        private void InitializeAdditionalComponents()
-        {
-            // Panel chat (bên phải)
-            chatPanel = new Panel
-            {
-                Dock = DockStyle.Right,
-                Width = 250
-            };
-
-            chatHistory = new RichTextBox
-            {
-                Dock = DockStyle.Top,
-                Height = ClientSize.Height - 50,
-                ReadOnly = true,
-                BackColor = Color.White
-            };
-
-            chatInput = new TextBox
-            {
-                Dock = DockStyle.Bottom,
-                Height = 30
-            };
-            // Thêm controls chat vào panel
-            chatPanel.Controls.AddRange(new Control[] { chatHistory, chatInput });
-
-            // Thêm các controls mới vào form
-            Controls.AddRange(new Control[]
-            {
-            chatPanel
-            });
-
-            // Đăng ký events
-            //chatInput.KeyPress += ChatInput_KeyPress;
-        }
-
-        // Thêm xử lý chat
-        //private void ChatInput_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    if (e.KeyChar == (char)Keys.Enter)
-        //    {
-        //        e.Handled = true;
-        //        string message = chatInput.Text.Trim();
-        //        if (!string.IsNullOrEmpty(message))
-        //        {
-        //            ClientSocket.SendMessage($"CHAT|{message}");
-        //            chatInput.Clear();
-        //        }
-        //    }
-        //}
 
 
         // Thêm method hiển thị chat
@@ -127,269 +72,6 @@ namespace UnoOnline
             chatHistory.ScrollToCaret();
         }
 
-        private bool GetAutoScroll()
-        {
-            return AutoScroll;
-        }
-
-        //    private void InitializeGameLayout(bool autoScroll)
-        //    {
-        //        this.ClientSize = new Size(1280, 720);
-        //        this.StartPosition = FormStartPosition.CenterScreen;
-        //        this.TransparencyKey = Color.FromArgb(0, 0, 0); // Màu trong suốt
-
-        //        // Panel chứa bài của người chơi (có tính năng cuộn)
-        //        Panel playerHandPanel = new Panel
-        //        {
-        //            Location = new Point(180, this.ClientSize.Height - 150),
-        //            Size = new Size(920, 130), // Kích thước panel
-        //            AutoScroll = true, // Bật tính năng cuộn
-        //            Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
-        //            BackColor = Color.Transparent // Màu nền
-
-        //        };
-
-
-
-        //        // Thêm panel vào form
-        //        this.Controls.Add(playerHandPanel);
-
-        //        // Tạo và thêm thẻ vào playerHandPanel
-        //        int cardWidth = 70; // Kích thước thẻ
-        //        int cardHeight = 100; // Kích thước thẻ
-        //        int spacing = 10; // Khoảng cách giữa các thẻ
-        //        int numberOfCards = 15; // Số thẻ bạn muốn hiển thị
-
-        //        for (int i = 0; i < numberOfCards; i++)
-        //        {
-        //            CustomCard card = new CustomCard
-        //            {
-        //                Size = new Size(cardWidth, cardHeight),
-        //                Location = new Point(i * (cardWidth + spacing), 0) // Sắp xếp theo hàng ngang
-        //            };
-        //            playerHandPanel.Controls.Add(card);
-        //        }
-
-        //        // Panel hiển thị bài trên bàn (ở giữa)
-        //        CustomCardPanel tableDeckPanel = new CustomCardPanel
-        //        {
-        //            Location = new Point(540, 260),
-        //            Size = new Size(200, 200),
-        //            Anchor = AnchorStyles.None,
-        //            BackColor = Color.FromArgb(100, 0, 0, 0) // Màu nền với độ trong suốt
-
-
-        //        };
-
-        //        // Panel hiển thị người chơi đối thủ (phía trên)
-        //        CustomCardPanel opponentPanel = new CustomCardPanel
-        //        {
-        //            Location = new Point(180, 20),
-        //            Size = new Size(920, 130),
-        //            Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
-        //            BackColor = Color.FromArgb(100, 0, 0, 0) // Màu nền với độ trong suốt
-
-        //        };
-
-
-        //        // Panel thông tin game bên trái
-        //        Panel gameInfoPanel = new Panel
-        //        {
-        //            Location = new Point(20, 160),
-        //            Size = new Size(150, 400),
-        //            Anchor = AnchorStyles.Left,
-        //            BackColor = Color.FromArgb(100, 0, 0, 0),
-
-        //        };
-
-
-
-        //        // Thêm các controls thông tin vào gameInfoPanel
-        //        Label currentPlayerLabel = new Label
-        //        {
-        //            Location = new Point(10, 10),
-        //            Size = new Size(130, 25),
-        //            Text = "Current Player:",
-        //            ForeColor = Color.White,
-        //            Font = new Font("Segoe UI", 12F)
-        //        };
-
-        //        Label scoreLabel = new Label
-        //        {
-        //            Location = new Point(10, 45),
-        //            Size = new Size(130, 25),
-        //            Text = "Score: 0",
-        //            ForeColor = Color.White,
-        //            Font = new Font("Segoe UI", 12F)
-        //        };
-
-        //        // Panel chứa các nút điều khiển (bên phải)
-        //        Panel controlPanel = new Panel
-        //        {
-        //            Location = new Point(this.ClientSize.Width - 170, 160),
-        //            Size = new Size(150, 400),
-        //            Anchor = AnchorStyles.Right,
-        //            BackColor = Color.FromArgb(100, 0, 0, 0)
-        //        };
-
-        //        // Thêm các nút vào controlPanel
-        //        Button drawCardButton = new Button
-        //        {
-        //            Location = new Point(10, 10),
-        //            Size = new Size(130, 40),
-        //            Text = "Draw Card",
-        //            FlatStyle = FlatStyle.Flat,
-        //            BackColor = Color.FromArgb(100, 0, 122, 204),
-        //            ForeColor = Color.White,
-        //            Font = new Font("Segoe UI", 12F)
-        //        };
-
-        //        Button unoButton = new Button
-        //        {
-        //            Location = new Point(10, 60),
-        //            Size = new Size(130, 40),
-        //            Text = "UNO!",
-        //            FlatStyle = FlatStyle.Flat,
-        //            BackColor = Color.FromArgb(100, 204, 0, 0),
-        //            ForeColor = Color.White,
-        //            Font = new Font("Segoe UI", 12F)
-        //        };
-
-        //        // Thêm chat box và input (phía dưới bên phải)
-        //        RichTextBox chatBox = new RichTextBox
-        //        {
-        //            Location = new Point(this.ClientSize.Width - 300, this.ClientSize.Height - 200),
-        //            Size = new Size(280, 150),
-        //            Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
-        //            BackColor = Color.FromArgb(150, 255, 255, 255),
-        //            ReadOnly = true
-        //        };
-
-        //        TextBox chatInput = new TextBox
-        //        {
-        //            Location = new Point(this.ClientSize.Width - 300, this.ClientSize.Height - 40),
-        //            Size = new Size(280, 30),
-        //            Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
-        //            BackColor = Color.FromArgb(150, 255, 255, 255)
-        //        };
-
-        //        // Thêm các controls vào form
-        //        this.Controls.AddRange(new Control[] {
-        //            playerHandPanel,
-        //            tableDeckPanel,
-        //            opponentPanel,
-        //            gameInfoPanel,
-        //            controlPanel,
-        //            chatBox,
-        //            chatInput
-        //         });
-
-        //        // Thêm controls vào các panel
-        //        gameInfoPanel.Controls.AddRange(new Control[] {
-        //    currentPlayerLabel,
-        //    scoreLabel
-        //});
-        //        controlPanel.Controls.AddRange(new Control[] {
-        //    drawCardButton,
-        //    unoButton
-        //});
-
-        //        drawCardButton.Click += DrawCardButton_Click;
-
-        //        // Main layout chia làm 3 phần: status, game area, player cards
-        //        mainLayout = new TableLayoutPanel
-        //        {
-        //            Dock = DockStyle.Fill,
-        //            RowCount = 3,
-        //            ColumnCount = 1,
-        //            BackColor = Color.FromArgb(41, 128, 185) // Màu xanh dương đậm
-        //        };
-
-        //        // Game status panel
-        //        gameStatusPanel = new Panel
-        //        {
-        //            Height = 60,
-        //            Dock = DockStyle.Top,
-        //            BackColor = Color.FromArgb(52, 73, 94)
-        //        };
-
-        //        // Khu vực chơi bài chính
-        //        Panel gameArea = new Panel
-        //        {
-        //            Dock = DockStyle.Fill,
-        //            Padding = new Padding(20)
-        //        };
-
-        //        // Panel chứa bài của người chơi
-        //        playerCardsPanel = new FlowLayoutPanel
-        //        {
-        //            Dock = DockStyle.Bottom,
-        //            Height = 150,
-        //            FlowDirection = FlowDirection.LeftToRight,
-        //            WrapContents = false,
-        //            AutoScroll = true,
-        //            Location = new Point(0, 750), // Vị trí nằm phía dưới cửa sổ (1600x900)
-        //            Size = new Size(1600, 150), // Kích thước Panel
-        //            BorderStyle = BorderStyle.FixedSingle, // Đặt viền cho Panel để dễ quan sát
-        //            BackColor = Color.LightGray // Màu nền tùy chọn
-        //        };
-
-        //        // Panel chứa các nút action
-        //        actionPanel = new Panel
-        //        {
-        //            Dock = DockStyle.Right,
-        //            Width = 150,
-        //            BackColor = Color.FromArgb(44, 62, 80)
-        //        };
-
-        //        // Setup các controls
-        //        SetupGameStatusPanel();
-        //        SetupActionPanel();
-
-        //        // Thêm vào form
-        //        mainLayout.Controls.Add(gameStatusPanel, 0, 0);
-        //        mainLayout.Controls.Add(gameArea, 0, 1);
-        //        mainLayout.Controls.Add(playerCardsPanel, 0, 2);
-
-        //        this.Controls.Add(mainLayout);
-        //    }
-
-        private Panel CreateControlPanel()
-        {
-            Panel controlPanel = new Panel
-            {
-                Location = new Point(this.ClientSize.Width - 170, 160),
-                Size = new Size(150, 400),
-                Anchor = AnchorStyles.Right,
-                BackColor = Color.FromArgb(100, 0, 0, 0) // Màu nền với độ trong suốt
-            };
-
-            Button drawCardButton = new Button
-            {
-                Location = new Point(10, 10),
-                Size = new Size(130, 40),
-                Text = "Draw Card",
-                FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(100, 0, 122, 204),
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 12F)
-            };
-
-            Button unoButton = new Button
-            {
-                Location = new Point(10, 60),
-                Size = new Size(130, 40),
-                Text = "UNO!",
-                FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(100, 204, 0, 0),
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 12F)
-            };
-
-            controlPanel.Controls.AddRange(new Control[] { drawCardButton, unoButton });
-            drawCardButton.Click += DrawCardButton_Click; // Gán sự kiện click
-            return controlPanel;
-        }
 
         public class CustomCard : UserControl
         {
@@ -398,39 +80,6 @@ namespace UnoOnline
                 this.BackColor = Color.White; // Màu nền của thẻ
                 this.BorderStyle = BorderStyle.FixedSingle; // Đường viền cho thẻ
             }
-        }
-
-        private void SetupGameStatusPanel()
-        {
-            Label turnLabel = new Label
-            {
-                Text = "Lượt của người chơi",
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                AutoSize = true,
-                Location = new Point(10, 10)
-            };
-
-            Label currentCardLabel = new Label
-            {
-                Text = "Lá bài hiện tại:",
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 4),
-                AutoSize = true,
-                Location = new Point(10, 35)
-            };
-
-            gameStatusPanel.Controls.AddRange(new Control[] { turnLabel, currentCardLabel });
-        }
-
-        private void SetupActionPanel()
-        {
-            // Tạo các button với style thống nhất
-            Button drawButton = CreateStyledButton("Rút bài", 0);
-            Button skipButton = CreateStyledButton("Bỏ qua", 1);
-            Button unoButton = CreateStyledButton("UNO!", 2);
-
-            actionPanel.Controls.AddRange(new Control[] { drawButton, skipButton, unoButton });
         }
 
         private Button CreateStyledButton(string text, int index)
@@ -490,7 +139,6 @@ namespace UnoOnline
         {
             InitializeComponent();
             InitializeGameBoard();
-            InitializeTimer();
             ApplyCustomTheme();
             InitializeCustomComponents();
             this.ClientSize = new System.Drawing.Size(945, 540); // Kích thước nội dung (không bao gồm thanh tiêu đề và viền)
@@ -650,27 +298,6 @@ namespace UnoOnline
             yellUNOButton.Enabled = false;
         }
 
-
-        private void InitializeTimer()
-        {
-            // Khởi tạo Timer
-            timer = new Timer();
-            timer.Interval = 1000;  // Đặt thời gian đếm ngược mỗi giây
-            timer.Tick += Timer_Tick;  // Gắn sự kiện Tick để giảm thời gian mỗi giây
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            if (turnTimer.Value > 0)
-            {
-                turnTimer.Value -= 10;  // Giảm giá trị ProgressBar mỗi giây
-            }
-            else
-            {
-                // Nếu hết thời gian, chuyển sang lượt tiếp theo
-                //Phải thông  báo cho server biết nữa => gửi tin RutBai
-            }
-        }
 
         public void DisplayPlayerHand(List<Card> playerHand)
         {
@@ -862,7 +489,6 @@ namespace UnoOnline
         }
 
         private Button drawCardButton;
-        private ProgressBar turnTimer;
         private FlowLayoutPanel PlayerHandPanel;
 
         private PictureBox currentCardPictureBox;
@@ -1047,31 +673,6 @@ namespace UnoOnline
                 chatInput.Clear();
             }
         }
-        public static void UpdateOtherPlayerStat(Message message)
-        {
-            string[] data = message.Data.ToArray();
-            string playerName = data[0];
-            int turnOrder = int.Parse(data[1]);
-            int cardCount = int.Parse(data[2]);
-
-            Player player = GameManager.Instance.Players.FirstOrDefault(p => p.Name == playerName);
-            if (player == null)
-            {
-                player = new Player(playerName);
-                GameManager.Instance.Players.Add(player);
-            }
-            player.Hand = new List<Card>(new Card[cardCount]);
-
-            Form1 form = Application.OpenForms.OfType<Form1>().FirstOrDefault();
-            if (form != null)
-            {
-                form.Invoke(new Action(() =>
-                {
-                    form.InitializeDeckImages();
-                }));
-            }
-        }
-        // Helper classes
 
         // end aaasddd
     }
